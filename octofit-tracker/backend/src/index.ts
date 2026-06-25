@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import { connectDb } from './db.js';
 import usersRouter from './routes/users.js';
@@ -13,6 +14,7 @@ const apiUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : `http://localhost:${port}`;
 
+app.use(cors());
 app.use(express.json());
 app.use('/api/users', usersRouter);
 app.use('/api/teams', teamsRouter);
