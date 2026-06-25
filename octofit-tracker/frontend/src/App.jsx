@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
-import Activities from './components/Activities';
-import Leaderboard from './components/Leaderboard';
-import Teams from './components/Teams';
-import Users from './components/Users';
-import Workouts from './components/Workouts';
+import Activities from './components/Activities.jsx';
+import Leaderboard from './components/Leaderboard.jsx';
+import Teams from './components/Teams.jsx';
+import Users from './components/Users.jsx';
+import Workouts from './components/Workouts.jsx';
 
 const rawCodespaceName = import.meta.env.VITE_CODESPACE_NAME;
 const codespaceName = rawCodespaceName && rawCodespaceName !== 'undefined'
@@ -17,8 +17,9 @@ const apiBaseUrl = codespaceName
 function getWarning() {
   if (!codespaceName) {
     return (
-      <div className="alert alert-warning">
-        <strong>Note:</strong> <code>VITE_CODESPACE_NAME</code> is not defined. The app is using the localhost API fallback.
+      <div className="alert alert-warning m-0">
+        <strong>Note:</strong> <code>VITE_CODESPACE_NAME</code> is not defined.
+        The app is using the localhost API fallback.
         Define <code>VITE_CODESPACE_NAME</code> in <code>.env.local</code> for Codespaces support.
       </div>
     );
@@ -31,14 +32,16 @@ function Home() {
     <div className="container py-5">
       <h1>OctoFit Tracker</h1>
       <p>Modern multi-tier workout and team tracking app.</p>
-      <p>API base URL: <code>{apiBaseUrl}</code></p>
+      <p>
+        API base URL: <code>{apiBaseUrl}</code>
+      </p>
     </div>
   );
 }
 
 function Layout() {
   return (
-    <div>
+    <>
       {getWarning()}
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
@@ -76,7 +79,7 @@ function Layout() {
           </div>
         </div>
       </nav>
-    </div>
+    </>
   );
 }
 

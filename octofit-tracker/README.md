@@ -17,3 +17,10 @@ Modern multi-tier application scaffold for the OctoFit Tracker project.
 
 - Frontend: `cd octofit-tracker/frontend && npm run dev`
 - Backend: `cd octofit-tracker/backend && npm run dev`
+
+## Frontend environment variables
+
+- Create `octofit-tracker/frontend/.env.local`
+- Define `VITE_CODESPACE_NAME=<your_codespace_name>` to use Codespaces-aware API URLs like:
+  `https://<your_codespace_name>-8000.app.github.dev/api/[component]/`
+- If `VITE_CODESPACE_NAME` is unset, the frontend safely falls back to `http://localhost:8000/api`
