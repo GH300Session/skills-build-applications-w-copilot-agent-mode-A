@@ -1,5 +1,5 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import { connectDb } from './db.js';
 import usersRouter from './routes/users.js';
 import teamsRouter from './routes/teams.js';
 import activitiesRouter from './routes/activities.js';
@@ -8,7 +8,6 @@ import workoutsRouter from './routes/workouts.js';
 
 const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 8000;
-const mongoUri = process.env.MONGODB_URI ?? 'mongodb://localhost:27017/octofit';
 const codespaceName = process.env.CODESPACE_NAME;
 const apiUrl = codespaceName
   ? `https://${codespaceName}-8000.githubpreview.dev`
@@ -31,8 +30,7 @@ app.get('/api/config', (_req, res) => {
 
 app.listen(port, async () => {
   try {
-    await mongoose.connect(mongoUri);
-    console.log(`Connected to MongoDB at ${mongoUri}`);
+    await connectDb();
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error);
     process.exit(1);

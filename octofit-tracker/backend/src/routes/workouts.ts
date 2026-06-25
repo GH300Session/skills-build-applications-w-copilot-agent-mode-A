@@ -1,14 +1,11 @@
 import { Router } from 'express';
+import { WorkoutModel } from '../models/workout.js';
 
 const router = Router();
 
-router.get('/', (_req, res) => {
-  res.json({
-    workouts: [
-      { id: 'workout-1', title: 'HIIT Sprint', duration: 20 },
-      { id: 'workout-2', title: 'Strength Flow', duration: 40 }
-    ]
-  });
+router.get('/', async (_req, res) => {
+  const workouts = await WorkoutModel.find().lean();
+  res.json({ workouts });
 });
 
 export default router;

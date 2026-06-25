@@ -1,14 +1,11 @@
 import { Router } from 'express';
+import { LeaderboardModel } from '../models/leaderboard.js';
 
 const router = Router();
 
-router.get('/', (_req, res) => {
-  res.json({
-    leaderboard: [
-      { rank: 1, name: 'Alex Octo', points: 920 },
-      { rank: 2, name: 'Morgan Fit', points: 850 }
-    ]
-  });
+router.get('/', async (_req, res) => {
+  const leaderboard = await LeaderboardModel.find().lean();
+  res.json({ leaderboard });
 });
 
 export default router;
